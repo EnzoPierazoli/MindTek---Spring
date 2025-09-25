@@ -1,14 +1,13 @@
 plugins {
-	kotlin("jvm") version "1.9.25"
-	kotlin("plugin.spring") version "1.9.25"
-	id("org.springframework.boot") version "3.5.6"
-	id("io.spring.dependency-management") version "1.1.7"
-	kotlin("plugin.jpa") version "1.9.25"
+	kotlin("jvm") version "1.9.24"
+	kotlin("plugin.spring") version "1.9.24"
+	id("org.springframework.boot") version "3.3.1" // Versão correta e estável
+	id("io.spring.dependency-management") version "1.1.5" // Versão correta e estável
+	kotlin("plugin.jpa") version "1.9.24"
 }
 
 group = "br.com.fiap.mindtek"
 version = "0.0.1-SNAPSHOT"
-description = "Demo project for Spring Boot"
 
 java {
 	toolchain {
@@ -22,15 +21,15 @@ repositories {
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("org.springframework.boot:spring-boot-starter-web")
+	// A dependência de security pode ser adicionada depois, vamos focar em fazer rodar primeiro
+	// implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	runtimeOnly("com.h2database:h2")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
-	testImplementation("org.springframework.security:spring-security-test")
-	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+	// testImplementation("org.springframework.security:spring-security-test")
 }
 
 kotlin {
@@ -39,6 +38,7 @@ kotlin {
 	}
 }
 
+// Configuração para o JPA funcionar com Kotlin
 allOpen {
 	annotation("jakarta.persistence.Entity")
 	annotation("jakarta.persistence.MappedSuperclass")

@@ -1,9 +1,9 @@
-package br.com.fiap.mindtek.mindtekapi.service
+package br.com.fiap.mindtek.mindtek_api.service // CORRIGIDO
 
-import br.com.fiap.mindtek.mindtekapi.dto.CreateCheckInRequest
-import br.com.fiap.mindtek.mindtekapi.dto.CheckInResponse
-import br.com.fiap.mindtek.mindtekapi.entity.CheckIn
-import br.com.fiap.mindtek.mindtekapi.repository.CheckInRepository
+import br.com.fiap.mindtek.mindtek_api.dto.CreateCheckInRequest // CORRIGIDO
+import br.com.fiap.mindtek.mindtek_api.dto.CheckInResponse // CORRIGIDO
+import br.com.fiap.mindtek.mindtek_api.entity.CheckIn // CORRIGIDO
+import br.com.fiap.mindtek.mindtek_api.repository.CheckInRepository // CORRIGIDO
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import org.springframework.stereotype.Service
 
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service
 class CheckInService(private val repository: CheckInRepository) {
 
     fun create(userId: String, request: CreateCheckInRequest): CheckInResponse {
-        // Converte o mapa de respostas extras para uma String JSON
         val extraAnswersJson = jacksonObjectMapper().writeValueAsString(request.extraAnswers)
 
         val checkIn = CheckIn(
@@ -23,8 +22,6 @@ class CheckInService(private val repository: CheckInRepository) {
         )
 
         val savedCheckIn = repository.save(checkIn)
-
-        // Lógica de gamificação (pode ser aprimorada depois)
         val coins = 50
 
         return CheckInResponse(

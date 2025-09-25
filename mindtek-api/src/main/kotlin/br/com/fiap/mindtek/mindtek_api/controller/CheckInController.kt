@@ -1,7 +1,7 @@
-package br.com.fiap.mindtek.mindtekapi.controller
+package br.com.fiap.mindtek.mindtek_api.controller // CORRIGIDO
 
-import br.com.fiap.mindtek.mindtekapi.dto.CreateCheckInRequest
-import br.com.fiap.mindtek.mindtekapi.service.CheckInService
+import br.com.fiap.mindtek.mindtek_api.dto.CreateCheckInRequest // CORRIGIDO
+import br.com.fiap.mindtek.mindtek_api.service.CheckInService // CORRIGIDO
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -12,7 +12,7 @@ class CheckInController(private val service: CheckInService) {
 
     @PostMapping
     fun createCheckIn(
-        @RequestHeader("X-User-ID") userId: String, // Cabeçalho para identificar o usuário anonimamente
+        @RequestHeader("X-User-ID") userId: String,
         @RequestBody request: CreateCheckInRequest
     ): ResponseEntity<Any> {
         if (userId.isBlank()) {
