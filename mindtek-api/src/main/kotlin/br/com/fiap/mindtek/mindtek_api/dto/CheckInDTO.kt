@@ -11,7 +11,7 @@ data class CreateCheckInRequest(
 )
 
 data class CheckInResponse(
-    val checkInId: UUID,
+    val checkInId: String,
     val userId: String,
     val date: LocalDateTime,
     val coinsEarned: Int,

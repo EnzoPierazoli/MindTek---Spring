@@ -1,24 +1,21 @@
-package br.com.fiap.mindtek.mindtek_api.entity // CORRIGIDO
+package br.com.fiap.mindtek.mindtek_api.entity
 
-import jakarta.persistence.*
+import org.springframework.data.annotation.Id
+import org.springframework.data.mongodb.core.mapping.Document
 import java.time.LocalDateTime
 import java.util.UUID
 
-@Entity
-@Table(name = "check_ins")
-class CheckIn(
+@Document(collection = "check_ins")
+data class CheckIn(
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    val id: UUID? = null,
-    @Column(nullable = false)
+    val id: String? = null,
+
     val userId: String,
-    @Column(nullable = false)
     val moodScore: Int,
     val emoji: String,
-    @Column(length = 500)
     val comment: String?,
-    @Column(length = 1000)
-    val extraAnswers: String,
-    @Column(nullable = false)
+
+    val extraAnswers: Map<String, String>,
+
     val createdAt: LocalDateTime = LocalDateTime.now()
 )

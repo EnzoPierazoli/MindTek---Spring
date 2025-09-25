@@ -1,24 +1,22 @@
-package br.com.fiap.mindtek.mindtek_api.service // CORRIGIDO
+package br.com.fiap.mindtek.mindtek_api.service
 
-import br.com.fiap.mindtek.mindtek_api.dto.CreateCheckInRequest // CORRIGIDO
-import br.com.fiap.mindtek.mindtek_api.dto.CheckInResponse // CORRIGIDO
-import br.com.fiap.mindtek.mindtek_api.entity.CheckIn // CORRIGIDO
-import br.com.fiap.mindtek.mindtek_api.repository.CheckInRepository // CORRIGIDO
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import br.com.fiap.mindtek.mindtek_api.dto.CheckInResponse
+import br.com.fiap.mindtek.mindtek_api.dto.CreateCheckInRequest
+import br.com.fiap.mindtek.mindtek_api.entity.CheckIn
+import br.com.fiap.mindtek.mindtek_api.repository.CheckInRepository
 import org.springframework.stereotype.Service
+import java.util.UUID
 
 @Service
 class CheckInService(private val repository: CheckInRepository) {
 
     fun create(userId: String, request: CreateCheckInRequest): CheckInResponse {
-        val extraAnswersJson = jacksonObjectMapper().writeValueAsString(request.extraAnswers)
-
         val checkIn = CheckIn(
             userId = userId,
             moodScore = request.moodScore,
             emoji = request.emoji,
             comment = request.comment,
-            extraAnswers = extraAnswersJson
+            extraAnswers = request.extraAnswers
         )
 
         val savedCheckIn = repository.save(checkIn)
